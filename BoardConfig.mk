@@ -173,3 +173,4 @@ TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone1/temp" # CPU-0-0-0
 TW_BACKUP_EXCLUSIONS := /data/fonts
 TW_DEFAULT_LANGUAGE := zh_CN
 TW_EXTRA_LANGUAGES := true
+TARGET_INIT_VERIFIER_SKIP := true
