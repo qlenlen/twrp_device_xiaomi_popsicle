@@ -20,9 +20,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # API
-BOARD_SHIPPING_API_LEVEL := 35
-PRODUCT_SHIPPING_API_LEVEL := 35
-PRODUCT_TARGET_VNDK_VERSION := 35
+BOARD_SHIPPING_API_LEVEL := 36
+PRODUCT_SHIPPING_API_LEVEL := 36
+PRODUCT_TARGET_VNDK_VERSION := 36
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -41,3 +41,30 @@ TWRP_REQUIRED_MODULES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
+
+# A/B
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    POSTINSTALL_OPTIONAL_system=true
+
+# Boot control HAL
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
+
+PRODUCT_PACKAGES += \
+    bootctrl.canoe
+
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    bootctrl.canoe \
+    libgptutils \
+    libz \
+    libcutils
+
+PRODUCT_PACKAGES += \
+    otapreopt_script \
+    cppreopts.sh \
+    update_engine \
+    update_verifier \
+    update_engine_sideload
