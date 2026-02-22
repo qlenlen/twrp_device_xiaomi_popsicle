@@ -48,6 +48,9 @@ BOARD_MKBOOTIMG_ARGS          += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_MKBOOTIMG_ARGS          += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS          += --pagesize $(BOARD_KERNEL_PAGESIZE)
 
+BOARD_BOOTCONFIG += kvm-arm.mode=none androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += bootconfig
+
 # Ramdisk use lz4
 BOARD_RAMDISK_USE_LZ4 := true
 
